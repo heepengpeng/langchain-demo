@@ -13,7 +13,7 @@ class DataSaveChain(Chain, ABC):
         An example of a custom chain.
         """
     text: str = ""
-    output_key: str = ""  #: :meta private:
+    output_key: str = "response"  #: :meta private:
 
     class Config:
         """Configuration for this pydantic object."""
@@ -49,7 +49,7 @@ class DataSaveChain(Chain, ABC):
     def _chain_type(self) -> str:
         return "save_data"
 
-    def http_request(self) -> str:
+    def http_request(self):
         url = 'http://127.0.0.1:8000/api/save-contract/'  # 替换为你要发送请求的URL  # 替换为你要发送的数据
         headers = {
             "Content-Type": "application/json"
@@ -59,9 +59,7 @@ class DataSaveChain(Chain, ABC):
 
         # 检查响应状态码
         if response.status_code == 200:
-            print('请求成功')
+            print(response.text)
         else:
-            print('请求失败')
-
-        # 获取响应内容
+            print(response.text)
         return response.text

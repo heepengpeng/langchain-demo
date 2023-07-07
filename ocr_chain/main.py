@@ -8,7 +8,7 @@ from ocr_chain.ocr_infer_chain import OCRInferChain
 
 
 def init():
-    os.environ['OPENAI_API_KEY'] = ''
+    os.environ['OPENAI_API_KEY'] = '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'
 
 
 def main():

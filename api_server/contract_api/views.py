@@ -16,8 +16,8 @@ def save_contract(request):
             with open('resume_exact.json', 'w', encoding="utf-8") as file:
                 json.dump(json_data, file, indent=4, ensure_ascii=False)
         except IOError:
-            return Response('Failed to save data', status=500)
+            return Response('Contract save failed', status=500)
 
-        return Response('Data saved successfully')
+        return Response('Contract save successfully')
     else:
         return Response('Invalid request method', status=405)
