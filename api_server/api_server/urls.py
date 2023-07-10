@@ -17,7 +17,9 @@ Including another URLconf
 from django.urls import path
 
 from contract_api.views import save_contract
+from ocr_api.views import ocr_image
 
 urlpatterns = [
     path('api/save-contract/', save_contract, name='save_contract'),
+    path('api/ocr-image/', ocr_image, name='ocr_image'),
 ]
