@@ -58,7 +58,7 @@ class OCRInferChain(Chain, ABC):
             run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, str]:
         self.contract_path = inputs["contract_path"]
-        return {self.output_key: ocr_agreement()}
+        return {self.output_key: ocr_agreement(self.contract_path)}
 
     @property
     def _chain_type(self) -> str:
