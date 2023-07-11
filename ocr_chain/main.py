@@ -28,13 +28,12 @@ def main():
     )
     document = over_all_chain("./data/1.jpg")["input"]
     print("--- 合同识别完成 ---")
-    print("合同内容是")
     docsearch = init_conversation_docsearch(document)
     while True:
-        user_input = input("请输入内容：")
+        user_input = input("请输入你的问题，输入exit退出对话：")
 
         if user_input == "exit":
-            print("退出循环")
+            print("退出对话")
             break
         print(get_answer_by_query(docsearch, user_input))
 

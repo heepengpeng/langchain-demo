@@ -19,7 +19,7 @@ def set_logger(
     output_dir: Optional[str] = None,
     log_fn: Optional[str] = None,
     rank: int = 0,
-    log_level: Optional[str] = logging.ERROR,
+    log_level: Optional[str] = logging.INFO,
 ) -> logging.Logger:
     """Initialize the logger.
 
