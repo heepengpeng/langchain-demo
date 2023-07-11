@@ -15,7 +15,7 @@ def ocr_agreement(contract_path) -> str:
     with open(contract_path, 'rb') as f:
         image_data = f.read()
         files = {'image': ('image.jpg', image_data, 'image/jpeg')}
-        response = requests.post('http://127.0.0.1:8000/api/ocr-image/',files=files)
+        response = requests.post('http://127.0.0.1:8000/api/ocr-image/', files=files)
         if response.status_code == 200:
             return response.json()['ocr_text']
         else:
@@ -63,4 +63,3 @@ class OCRInferChain(Chain, ABC):
     @property
     def _chain_type(self) -> str:
         return "ocr_infer"
-
