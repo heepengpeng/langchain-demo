@@ -3,6 +3,7 @@ from __future__ import annotations
 from abc import ABC
 from typing import Any, Dict, List, Optional
 
+import requests
 from langchain.callbacks.manager import (
     CallbackManagerForChainRun,
 )
@@ -34,7 +35,7 @@ class OCRInferChain(Chain, ABC):
 
     @property
     def output_keys(self) -> List[str]:
-        """Will always return text key.
+        """Will always return ocr_infer key.
 
         :meta private:
         """
@@ -53,9 +54,12 @@ class OCRInferChain(Chain, ABC):
         return "ocr_infer"
 
     def read_agreement(self) -> str:
-        rental_agreement_text = ""
-        with open(self.contract_path, encoding="utf-8") as f:
-            lines = f.readlines()
-            for line in lines:
-                rental_agreement_text += line
-        return rental_agreement_text
+        with open('./data/1.jpg', 'rb') as f:
+            image_data = f.read()
+            files = {'image': ('image.jpg', image_data, 'image/jpeg')}
+            response = requests.post('http://127.0.0.1:8000/api/ocr-image/',files=files)
+            if response.status_code == 200:
+                return response.json()['ocr_text']
+            else:
+                return ""
+

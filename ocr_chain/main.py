@@ -1,13 +1,16 @@
-from dotenv import load_dotenv
+import os
+
 from langchain.chains import SequentialChain
 
-from extract_chain import get_extract_chain
 from ocr_chain.data_save import DataSaveChain
+from ocr_chain.extract_chain import get_extract_chain
 from ocr_chain.ocr_infer_chain import OCRInferChain
 
 
 def init():
-    load_dotenv('.env')
+    with open(".env") as f:
+        line = f.readlines()[0]
+        os.environ['OPENAI_API_KEY'] = line.split("=")[-1].strip()
 
 
 def main():

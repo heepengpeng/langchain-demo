@@ -1,6 +1,9 @@
 import os.path
+import shutil
 
 from django.http import JsonResponse
+
+from ocr_api.ocr_infer.predict_system import main
 
 
 def ocr_image(request):
@@ -12,5 +15,11 @@ def ocr_image(request):
         with open('./tmp/image.jpg', 'wb') as f:
             for chunk in image.chunks():
                 f.write(chunk)
-        return JsonResponse({'message': 'Image uploaded successfully.'})
+        ocr_text = ocr_infer("./tmp/image.jpg")
+        shutil.rmtree("./tmp")
+        return JsonResponse({'ocr_text': ocr_text})
     return JsonResponse({'error': 'Invalid request.'}, status=400)
+
+
+def ocr_infer(image_path):
+    return main(image_path)

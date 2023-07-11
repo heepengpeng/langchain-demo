@@ -13,7 +13,7 @@ def save_contract(request):
 
         # 存储到文件
         try:
-            with open('resume_exact.json', 'w', encoding="utf-8") as file:
+            with open('contract_extract.json', 'w', encoding="utf-8") as file:
                 json.dump(json_data, file, indent=4, ensure_ascii=False)
         except IOError:
             return Response('Contract save failed', status=500)

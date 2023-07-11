@@ -31,7 +31,7 @@ class DataSaveChain(Chain, ABC):
 
     @property
     def output_keys(self) -> List[str]:
-        """Will always return text key.
+        """Will always return ocr_infer key.
 
         :meta private:
         """
@@ -50,16 +50,15 @@ class DataSaveChain(Chain, ABC):
         return "save_data"
 
     def http_request(self):
-        url = 'http://127.0.0.1:8000/api/save-contract/'  # 替换为你要发送请求的URL  # 替换为你要发送的数据
+        url = 'http://127.0.0.1:8000/api/save-contract/'
         headers = {
             "Content-Type": "application/json"
         }
-
         response = requests.post(url, headers=headers, data=json.dumps(self.text))
-
         # 检查响应状态码
         if response.status_code == 200:
             print(response.text)
+            return response.text
         else:
-            print(response.text)
-        return response.text
+            print("Save contract error!")
+            return ""
