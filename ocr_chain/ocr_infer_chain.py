@@ -11,6 +11,17 @@ from langchain.chains.base import Chain
 from pydantic import Extra
 
 
+def ocr_agreement(contract_path) -> str:
+    with open(contract_path, 'rb') as f:
+        image_data = f.read()
+        files = {'image': ('image.jpg', image_data, 'image/jpeg')}
+        response = requests.post('http://127.0.0.1:8000/api/ocr-image/',files=files)
+        if response.status_code == 200:
+            return response.json()['ocr_text']
+        else:
+            return ""
+
+
 class OCRInferChain(Chain, ABC):
     """
         An example of a custom chain.
@@ -47,19 +58,9 @@ class OCRInferChain(Chain, ABC):
             run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, str]:
         self.contract_path = inputs["contract_path"]
-        return {self.output_key: self.read_agreement()}
+        return {self.output_key: ocr_agreement()}
 
     @property
     def _chain_type(self) -> str:
         return "ocr_infer"
-
-    def read_agreement(self) -> str:
-        with open('./data/1.jpg', 'rb') as f:
-            image_data = f.read()
-            files = {'image': ('image.jpg', image_data, 'image/jpeg')}
-            response = requests.post('http://127.0.0.1:8000/api/ocr-image/',files=files)
-            if response.status_code == 200:
-                return response.json()['ocr_text']
-            else:
-                return ""
 

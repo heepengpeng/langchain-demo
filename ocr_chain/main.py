@@ -26,7 +26,7 @@ def main():
         verbose=True
     )
 
-    over_all_chain("rental_agreement.txt")
+    over_all_chain("./data/1.jpg")
 
 
 if __name__ == '__main__':
