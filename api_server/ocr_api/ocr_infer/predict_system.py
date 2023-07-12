@@ -175,7 +175,7 @@ def main(image_path):
     args.image_dir = os.path.abspath(image_path)
 
     args.det_algorithm = "DB++"
-    args.rec_rec_algorithm = "RARE_CH"
+    args.rec_rec_algorithm = "CRNN_CH"
 
     args.det_model_dir = ""
     args.det_amp_level = "O0"

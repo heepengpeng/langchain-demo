@@ -1,10 +1,17 @@
+from langchain.chains import RetrievalQA
 from langchain.chains.question_answering import load_qa_chain
+from langchain.document_loaders import TextLoader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.llms import OpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
+
+from ocr_chain.init_env import init_api_key
+
+init_api_key()
+llm = OpenAI(temperature=0)
 
 
 def init_conversation_docsearch(input_text):
@@ -39,6 +46,19 @@ def get_answer_by_query(docsearch, query):
     )
     output = chain({"input_documents": docs, "human_input": query}, return_only_outputs=True)
     return output["output_text"]
+
+
+def get_document_chain():
+    loader = TextLoader("./tmp/contract.txt")
+    documents = loader.load()
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    texts = text_splitter.split_documents(documents)
+    embeddings = OpenAIEmbeddings()
+    docsearch = Chroma.from_documents(texts, embeddings, collection_name="contract-info")
+    document_chain = RetrievalQA.from_chain_type(
+        llm=llm, chain_type="stuff", retriever=docsearch.as_retriever()
+    )
+    return document_chain
 
 
 if __name__ == '__main__':

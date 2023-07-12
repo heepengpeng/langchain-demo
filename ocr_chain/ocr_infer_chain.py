@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os.path
 from abc import ABC
 from typing import Any, Dict, List, Optional
 
@@ -58,7 +59,13 @@ class OCRInferChain(Chain, ABC):
             run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, str]:
         self.contract_path = inputs["contract_path"]
-        return {self.output_key: ocr_agreement(self.contract_path)}
+        if not os.path.exists("./tmp"):
+            os.mkdir("./tmp/")
+
+        contract_text = ocr_agreement(self.contract_path)
+        with open('./tmp/contract.txt', "w") as f:
+            f.write(contract_text)
+        return {self.output_key: contract_text}
 
     @property
     def _chain_type(self) -> str:
