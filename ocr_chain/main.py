@@ -4,7 +4,6 @@ from langchain.agents import initialize_agent, AgentType
 from langchain.chains import SequentialChain
 from langchain.memory import ConversationBufferMemory
 
-from ocr_chain.conversation_chain import get_document_chain
 from ocr_chain.curreant_date_chain import time
 from ocr_chain.data_save import DataSaveChain
 from ocr_chain.extract_chain import get_extract_chain
