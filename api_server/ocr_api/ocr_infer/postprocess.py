@@ -39,7 +39,7 @@ class Postprocessor(object):
             # TODO: update character_dict_path and use_space_char after CRNN trained using en_dict.txt released
             if algo.startswith("CRNN") or algo.startswith("SVTR"):
                 # TODO: allow users to input char dict path
-                dict_path = "/ocr_api/ocr_infer/mindocr/utils/dict/ch_dict.txt" if algo == "CRNN_CH" else None
+                dict_path = "./ocr_api/ocr_infer/mindocr/utils/dict/ch_dict.txt" if algo == "CRNN_CH" else None
                 postproc_cfg = dict(
                     name="RecCTCLabelDecode",
                     character_dict_path=dict_path,

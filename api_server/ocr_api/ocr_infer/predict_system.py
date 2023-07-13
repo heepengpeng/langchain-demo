@@ -8,7 +8,6 @@ Example:
       --rec_algorithm CRNN_CH
 """
 import argparse
-import json
 import logging
 import os
 import sys
@@ -175,7 +174,6 @@ def main(image_path):
     args.image_dir = os.path.abspath(image_path)
 
     args.det_algorithm = "DB++"
-    args.rec_rec_algorithm = "CRNN_CH"
 
     args.det_model_dir = ""
     args.det_amp_level = "O0"
@@ -188,7 +186,7 @@ def main(image_path):
     args.use_dilation = False
     args.det_db_score_mode = "fast"
 
-    args.rec_algorithm = "RARE_CH"
+    args.rec_algorithm = "CRNN_CH"
     args.rec_image_shape = "3, 32, 320"
     args.rec_batch_mode = True
     args.rec_batch_num = 8
