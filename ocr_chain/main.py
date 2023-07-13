@@ -1,10 +1,14 @@
+import time
+
 from langchain import OpenAI, SerpAPIWrapper
 from langchain.agents import Tool
 from langchain.agents import initialize_agent, AgentType
+from langchain.cache import SQLiteCache
+from langchain.callbacks.tracers import langchain
 from langchain.memory import ConversationBufferMemory
 
 from contract_check import ContractCheck
-from ocr_chain.curreant_date_chain import time
+from ocr_chain.curreant_date_chain import time_func
 from ocr_chain.init_env import init_api_key
 from ocr_chain.ocr_infer_chain import ocr_agreement
 
@@ -30,11 +34,11 @@ def main():
                     func=contract_check.run,
                     description="useful for when you need to determine whether the contract is compliant."
                 ),
-            ] + [time]
-
+            ] + [time_func]
+    langchain.llm_cache = SQLiteCache(database_path=".langchain.db")
     memory = ConversationBufferMemory(memory_key="chat_history")
-    agent_chain = initialize_agent(tools, llm, agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, verbose=True,
-                                   memory=memory)
+    agent = initialize_agent(tools, llm, agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, verbose=True,
+                             memory=memory)
     # 请帮我从这张图片中提取出信息: ./data/1.jpg
     while True:
         user_input = input("请输入你的问题，输入exit退出对话：")
@@ -42,7 +46,10 @@ def main():
         if user_input == "exit":
             print("退出对话")
             break
-        print(agent_chain.run(input=user_input))
+        start_time = time.time()
+        print(agent.run(input=user_input))
+        end_time = time.time()
+        print(f"\n执行时间: {end_time - start_time}")
 
 
 if __name__ == '__main__':

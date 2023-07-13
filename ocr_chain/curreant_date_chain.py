@@ -4,7 +4,7 @@ from langchain.agents import tool
 
 
 @tool
-def time(text: str) -> str:
+def time_func(text: str) -> str:
     """Returns todays date, use this for any \
     questions related to knowing todays date. \
     The input should always be an empty string, \
