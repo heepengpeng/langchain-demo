@@ -26,7 +26,7 @@ class ContractCheck:
         template = """
             请帮我判断合同是否合规
             
-            你需要按照以下规则 {contract_rule}
+            你需要按照以下规则 {contract_rule}， 如果没有这些字段，则合同不合规
             
             合同的内容是：
             {contract_content}

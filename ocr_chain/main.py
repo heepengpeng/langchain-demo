@@ -6,21 +6,18 @@ from langchain.memory import ConversationBufferMemory
 from contract_check import ContractCheck
 from ocr_chain.curreant_date_chain import time
 from ocr_chain.init_env import init_api_key
-from ocr_chain.ocr_infer_chain import OCRInferChain
+from ocr_chain.ocr_infer_chain import ocr_agreement
 
 
 def main():
     llm = OpenAI(temperature=0)
-    ocr_chain = OCRInferChain(
-        output_key="input",
-    )
     search = SerpAPIWrapper()
     contract_check = ContractCheck(llm)
     tools = [
 
                 Tool(
                     name="OCR",
-                    func=ocr_chain.run,
+                    func=ocr_agreement,
                     description="useful for when you need to answer questions about extract text from image"
                 ),
                 Tool(
