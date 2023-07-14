@@ -50,16 +50,3 @@ class ContractCheck:
         end_time = time.time()
         print(f"Consume time {end_time - start_time}")
         return result
-
-
-if __name__ == '__main__':
-    os.environ["OPENAI_API_KEY"] = "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"
-
-    langchain.llm_cache = SQLiteCache(database_path=".cache.db")
-    from langchain.llms import OpenAI
-
-    llm = OpenAI(model_name="text-davinci-002", n=2, best_of=2)
-
-    llm.predict("What is OpenAI?")
-    llm.predict("What is OpenAI?")
-    llm.predict("What is OpenAI?")
