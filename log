@@ -1,0 +1,94 @@
+Thought: 我需要判断合同是否合规
+Action: Determine contract compliance.
+Action Input: 出租方：张伟
+地址
+陕西省西安市雁塔区丈八六路128
+承租方：李娜
+地址：陕西省西安市长安区樱花二路32号
+租赁合同
+本租合同(以下简‘本合同”由出租方张伟(以下简称“房东”与承租
+李娜(以下简称2023月1日签订
+Consume time 0.0009996891021728516
+
+Observation:  根据以上信息，此合同不合规，因为缺少租户的电话号码和房子是否有贷款的信息。
+Thought:Number of requested results 4 is greater than number of elements in index 1, updating n_results = 1
+ 我需要查询现在的时间
+Action: time_func
+Action Input: ""
+Observation: 2023-07-24
+Thought: 我现在知道最终答案
+Final Answer: 根据以上信息，此合同不合规，现在的时间是2023-07-24。
+
+> Finished chain.
+根据以上信息，此合同不合规，现在的时间是2023-07-24。
+请输入你的问题，输入exit退出对话：从这张图片中提取出合同信息: ./data/1.jpg, 并判断合同是否合规, 并查询现在的时间， 然后查询美国的总统是谁
+
+
+> Entering new AgentExecutor chain...
+ 我需要从图片中提取文本，然后判断合同是否合规，然后查询现在的时间，最后查询美国总统是谁
+Action: OCR
+Action Input: ./data/1.jpg
+Observation: 出租方：张伟
+地址
+陕西省西安市雁塔区丈八六路128
+承租方：李娜
+地址：陕西省西安市长安区樱花二路32号
+租赁合同
+本租合同(以下简‘本合同”由出租方张伟(以下简称“房东”与承租
+李娜(以下简称2023月1日签订
+租赁物
+房东同意将位于陕西省西安市雁塔区双水磨小区12楼1单元201的住宅物业（以
+下简称“物业出租给租户租户同]意从房东处租赁该物业。
+租赁期限
+赁期从20231月开始，持续6个月，到期日为2023年7月。除非
+双方书面协议另有约]定，租户同意本期满后搬离物业
+租金支付
+租户同每月提前在每月的5日之支付租金额为2000.租金应以人
+民币形式支付给房东，支付至以下支付十宝账号：15909295206
+押
+租户本合同应向房付押心金额安6000押金作为租户在租
+赁期任何损坏金的担保押在本合同终止后的30天内
+退扣除适可的任何订损坏、付租金或其他1费用
+公用惠
+除非书面协小议另有约定租户负责支付所有公用事业和服费用，包括但
+不限水费燃气费和互联网费用
+维护班
+房东应负责维护物业的良好居住状态，包括必要的维修和保养。租户同意及时通
+知房东任何需要维修或保养的问题。
+物业使用：
+租户仅可将物业用作居住国的，不得在物业上从（事任何非法k活动。租户未经房东
+事先老面同意不得转租或转让-物业
+违约：
+如果租户未支付租金或违反本合同的任何其他条款,房东有权终止租赁并采取法
+律行动收回]物业。
+房东：
+张传
+租户：
+
+Thought: 我已经提取出了合同文本，现在我需要判断合同是否合规
+Action: Determine contract compliance.
+Action Input: 出租方：张伟
+地址
+陕西省西安市雁塔区丈八六路128
+承租方：李娜
+地址：陕西省西安市长安区樱花二路32号
+租赁合同
+本租合同(以下简‘本合同”由出租方张伟(以下简称“房东”与承租Consume time 0.0024182796478271484
+Number of requested results 4 is greater than number of elements in index 1, updating n_results = 1
+
+Observation:  根据以上信息，此合同不合规，因为缺少租户的电话号码和房子是否有贷款的信息。
+Thought: 我现在需要查询现在的时间
+Action: time_func
+Action Input: ""
+Observation: 2023-07-24
+Thought: 我现在需要查询美国总统是谁
+Action: Current Search
+Action Input: "who is the president of the United States"
+Observation: Joe Biden
+Thought:Retrying langchain.llms.openai.completion_with_retry.<locals>._completion_with_retry in 4.0 seconds as it raised RateLimitError: Rate limit reached for default-text-davinci-003 in organization org-bB6oBKjr8taQXz6P0wpxpnqh on requests per min. Limit: 3 / min. Please try again in 20s. Contact us through our help center at help.openai.com if you continue to have issues. Please add a payment method to your account to increase your rate limit. Visit https://platform.openai.com/account/billing to add a payment method..
+Retrying langchain.llms.openai.completion_with_retry.<locals>._completion_with_retry in 4.0 seconds as it raised RateLimitError: Rate limit reached for default-text-davinci-003 in organization org-bB6oBKjr8taQXz6P0wpxpnqh on requests per min. Limit: 3 / min. Please try again in 20s. Contact us through our help center at help.openai.com if you continue to have issues. Please add a payment method to your account to increase your rate limit. Visit https://platform.openai.com/account/billing to add a payment method..
+ 我现在知道最终答案
+Final Answer: 美国总统是Joe Biden，当前时间是2023-07-24，但是此合同不合规。
+
+> Finished chain.
+美国总统是Joe Biden，当前时间是2023-07-24，但是此合同不合规。
