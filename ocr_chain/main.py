@@ -30,14 +30,14 @@ def main():
                 Tool(
                     name="Determine contract compliance.",
                     func=contract_check.run,
-                    description="非常有用，当你需要判断合同是否合规时"
+                    description="useful for when you need to determine whether a contract is compliant"
                 ),
             ] + [time_func]
     memory = ConversationBufferMemory(memory_key="chat_history")
     no_cache_llm = OpenAI(temperature=0, cache=False)
-    agent = initialize_agent(tools, no_cache_llm, agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, verbose=True,
+    agent = initialize_agent(tools, no_cache_llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True,
                              memory=memory)
-    # 请帮我从这张图片中提取出信息: ./data/1.jpg
+    # 从这张图片中提取出合同信息: ./data/1.jpg, 并判断合同是否合规, 并查询现在的时间， 然后查询美国的总统是谁
     while True:
         user_input = input("请输入你的问题，输入exit退出对话：")
 
