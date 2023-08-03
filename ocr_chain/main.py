@@ -3,11 +3,13 @@ from langchain.agents import Tool
 from langchain.agents import initialize_agent, AgentType
 from langchain.memory import ConversationBufferMemory
 
+import correct_contract
+import email_api
+import search_owner
 from contract_check import ContractCheck
+from curreant_date_chain import time_func
 from init_env import init_api_key
-from ocr_chain import correct_contract, search_owner, email_api
-from ocr_chain.curreant_date_chain import time_func
-from ocr_chain.ocr_infer_chain import ocr_agreement
+from ocr_infer_chain import ocr_agreement
 
 
 # 请帮我判断合同是否合规
